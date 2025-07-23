@@ -13,6 +13,7 @@ const AI_TOOLS = [
   "gemini",
   "grok",
   "codewhisperer",
+  "amazonQ",
   "codeium",
   "deepseek",
 ];
