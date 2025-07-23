@@ -11,6 +11,7 @@ const checkRateLimit = async () => {
   console.log(`✅ GitHub API Rate Limit:`);
   console.log(`→ Remaining: ${remaining} / ${limit}`);
   console.log(`→ Resets at: ${new Date(reset * 1000).toLocaleTimeString()}`);
+  console.log("rate: ", data.rate);
 };
 
 checkRateLimit();
