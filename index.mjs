@@ -37,7 +37,7 @@ const SEARCH_TERMS = [
 
 const LANGUAGES = ["JavaScript", "TypeScript"];
 
-const PER_PAGE = 100; // max allowed
+const PER_PAGE = 30; // max allowed
 const CACHE_FILE = "./progress_cache.json";
 const CSV_FILE = "./ai_code_dataset.csv";
 
@@ -87,7 +87,7 @@ async function guardCore() {
 
 // Simple throttle to stay under ~30 searches/min
 async function throttleSearch() {
-  await new Promise((r) => setTimeout(r, 2000)); // 2s pause =>
+  await new Promise((r) => setTimeout(r, 3000)); // 2s pause =>
   // ~30 reqs/min
 }
 
@@ -105,7 +105,7 @@ async function crawl() {
           // reset pagination
           state.page = 1;
 
-          while (true) {
+          while (state.page <= 30) {
             await guardCore();
             await throttleSearch();
 
