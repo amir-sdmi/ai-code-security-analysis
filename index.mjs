@@ -6,16 +6,7 @@ import { Parser } from "json2csv";
 config();
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
-const AI_TOOLS = [
-  "copilot",
-  "chatgpt",
-  "cursor",
-  "gemini",
-  "grok",
-  "codewhisperer",
-  "codeium",
-  "deepseek",
-];
+const AI_TOOLS = ["copilot"];
 
 const SEARCH_TERMS = [
   "created by",
@@ -87,7 +78,7 @@ async function guardCore() {
 
 // Simple throttle to stay under ~30 searches/min
 async function throttleSearch() {
-  await new Promise((r) => setTimeout(r, 3000)); // 2s pause =>
+  await new Promise((r) => setTimeout(r, 4000)); // 2s pause =>
   // ~30 reqs/min
 }
 
