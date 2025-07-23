@@ -18,8 +18,11 @@
   "homepage": "https://github.com/amir-sdmi/ai-code-crawler#readme",
   "dependencies": {
     "@octokit/rest": "^22.0.0",
+    "cli-table3": "^0.6.5",
     "dotenv": "^17.2.0",
     "fs-extra": "^11.3.0",
-    "json2csv": "^6.0.0-alpha.2"
+    "json2csv": "^6.0.0-alpha.2",
+    "lodash": "^4.17.21",
+    "xlsx": "^0.18.5"
   }
 }
