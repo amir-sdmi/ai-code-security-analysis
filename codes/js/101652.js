@@ -1,0 +1,170 @@
+import React from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
+const CookbookSimple = () => {
+  console.log("Rendering CookbookSimple component");
+
+  return (
+    <article className="recipe-card border border-gray-100 rounded-lg overflow-hidden shadow-sm">
+      {/* Recipe Header - Simplified */}
+      <header className="bg-gray-50 p-6 border-b border-gray-100">
+        <h2 className="text-xl font-medium mb-2">AI Content Generation</h2>
+        <p className="text-sm text-gray-600">
+          Implementing AI-powered content generation with Gemini 1.5 Flash.
+        </p>
+        <div className="flex items-center text-xs text-gray-400 mt-3">
+          <span className="mr-4">2 minutes</span>
+          <span>Medium</span>
+        </div>
+      </header>
+
+      {/* Ingredients Section - Simplified */}
+      <section className="p-6 border-b border-gray-100">
+        <h3 className="text-lg font-medium mb-4">Ingredients</h3>
+        <ul className="list-disc pl-5 text-sm text-gray-600 space-y-2">
+          <li>Gemini 1.5 Flash API for content generation</li>
+          <li>Error handling mechanism</li>
+          <li>Content settings (type, format, style)</li>
+          <li>Response formatting utilities</li>
+        </ul>
+      </section>
+
+      {/* Instructions Section - Simplified */}
+      <section className="p-6 border-b border-gray-100">
+        <h3 className="text-lg font-medium mb-4">Instructions</h3>
+        <ol className="list-decimal pl-5 text-sm text-gray-600 space-y-4">
+          <li>
+            <p className="font-medium mb-1">Prepare your AI processing</p>
+            <p>Initialize your Gemini AI client with proper error handling for content generation.</p>
+            <SyntaxHighlighter
+              language="javascript"
+              style={oneLight}
+              className="text-xs rounded border border-gray-200 mt-2"
+              showLineNumbers={true}
+            >
+{`// Initialize Gemini AI client
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_API_KEY);
+
+// We'll initialize the client lazily when needed`}
+            </SyntaxHighlighter>
+          </li>
+
+          <li>
+            <p className="font-medium mb-1">Generate content with Gemini 1.5 Flash</p>
+            <p>Use Gemini to generate high-quality content based on user input.</p>
+            <SyntaxHighlighter
+              language="javascript"
+              style={oneLight}
+              className="text-xs rounded border border-gray-200 mt-2"
+              showLineNumbers={true}
+            >
+{`// Generate content with Gemini 1.5 Flash
+const result = await model.generateContent([prompt]);
+const generatedContent = result.response.text().trim();`}
+            </SyntaxHighlighter>
+          </li>
+
+          <li>
+            <p className="font-medium mb-1">Format the content</p>
+            <p>Apply appropriate formatting based on content type and style.</p>
+            <SyntaxHighlighter
+              language="javascript"
+              style={oneLight}
+              className="text-xs rounded border border-gray-200 mt-2"
+              showLineNumbers={true}
+            >
+{`// Format content based on type
+let formattedContent;
+if (contentType === 'markdown') {
+  formattedContent = formatMarkdown(generatedContent);
+} else if (contentType === 'html') {
+  formattedContent = formatHTML(generatedContent);
+} else {
+  formattedContent = generatedContent;
+}`}
+            </SyntaxHighlighter>
+          </li>
+
+          <li>
+            <p className="font-medium mb-1">Construct the response object</p>
+            <p>Create a consistent response format for AI-generated content.</p>
+            <SyntaxHighlighter
+              language="javascript"
+              style={oneLight}
+              className="text-xs rounded border border-gray-200 mt-2"
+              showLineNumbers={true}
+            >
+{`// Send the response
+res.json({
+  status: "success",
+  message: "AI content generation completed successfully",
+  content: generatedContent,
+  formattedContent: formattedContent,
+  model: "gemini-1.5-flash",
+  settings: {
+    contentType: contentType,
+    style: style,
+    temperature: 0.7,
+    maxTokens: 1000
+  }
+});`}
+            </SyntaxHighlighter>
+          </li>
+        </ol>
+      </section>
+
+      {/* Chef's Notes - Simplified */}
+      <section className="p-6 border-b border-gray-100">
+        <h3 className="text-lg font-medium mb-4">Chef's Notes</h3>
+        <div className="text-sm text-gray-600">
+          <p className="mb-3">
+            The AI content generation system provides:
+          </p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>
+              <span className="font-medium">Content Generation:</span> High-quality content generated by Gemini 1.5 Flash
+            </li>
+            <li>
+              <span className="font-medium">Formatting Options:</span> Support for various content types and styles
+            </li>
+            <li>
+              <span className="font-medium">JSON Response:</span> Complete API response structure with content and settings
+            </li>
+          </ul>
+          <p className="mt-3">
+            This implementation provides a robust foundation for AI-powered content generation.
+          </p>
+        </div>
+      </section>
+
+      {/* Sample Response - Simplified */}
+      <section className="p-6 border-b border-gray-100">
+        <h3 className="text-lg font-medium mb-4">Response Format</h3>
+        <SyntaxHighlighter
+          language="json"
+          style={oneLight}
+          className="text-xs rounded border border-gray-200"
+          showLineNumbers={true}
+        >
+{`{
+  "status": "success",
+  "message": "AI content generation completed successfully",
+  "content": "This is the generated content...",
+  "formattedContent": "# Generated Content\\n\\nThis is the formatted content...",
+  "model": "gemini-1.5-flash",
+  "settings": {
+    "contentType": "markdown",
+    "style": "professional",
+    "temperature": 0.7,
+    "maxTokens": 1000
+  }
+}`}
+        </SyntaxHighlighter>
+      </section>
+    </article>
+  );
+};
+
+export default CookbookSimple;

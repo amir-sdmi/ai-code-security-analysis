@@ -1,0 +1,669 @@
+// Define session questions in both English and Korean
+let session1Questions = {
+  en: [
+    "Summarize the plot of your favorite Korean drama/novel etc. (Use 100-120 words)",
+    "Explain the principles of Korean traditional etiquette, known as “Jeong” (Use 100-120 words)",
+    "Explain how you would blend digital learning tools (e.g. Chromebooks) with conventional teaching methods (e.g. whiteboard) to enhance learning outcomes (Use 100-120 words)",
+    "What is the relationship between Korea's aging population and its economic challenges? (Use 100-120 words)",
+    "Evaluate the pros and cons of Korean education system (Use 100-120 words)",
+    "What changes would you make to solve the high youth unemployment rate in South Korea? (Use 100-120 words)"
+  ],
+  ko: [
+    "좋아하는 한국 드라마/소설/영화 등의 줄거리를 요약하십시오 (100~120단어 사이)",
+    "한국 전통 예절,'정'에 관하여 설명하십시오 (100~120단어 사이)",
+    "디지털 학습 도구를 기존의 교육 방법과 어떻게 융합하여 학습 성과를 향상시킬 것인지 설명하십시오 (100~120단어 사이)",
+    "한국의 고령화 인구와 경제적 문제의 관계를 논의하십시오 (100~120단어 사이)",
+    "한국 교육 시스템의 장단점을 평가하십시오 (100~120단어 사이)",
+    "한국의 높은 청년 실업률을 해결하기 위해 필요한 변화를 서술하시오 (100~120단어 사이)"
+  ]
+};
+
+let session2Questions = {
+  en: [
+    "Name three traditional Korean holidays and briefly explain their significance (Use 150-200 words)",
+    "Explain the reasons for the popularity of Korean cuisine internationally (Use 150-200 words)",
+    "What elements would you choose to change in the current university curriculum to better prepare students for the future job market? (Use 150-200 words)",
+    "Describe the impact of Confucianism on modern Korean society (Use 150-200 words)",
+    "Evaluate the impact of social media on mental health among teenagers (Use 150-200 words)",
+    "Create an innovative project to promote eco-friendly practices in Korean households (Use 150-200 words)"
+  ],
+  ko: [
+    "한국의 세 가지 공휴일의 이름과 각각의 의미를 간략히 설명하십시오 (150~200 단어 사이)",
+    "한국 요리가 국제적으로 인기를 끌게 된 이유를 설명하십시오 (150~200 단어 사이)",
+    "현재 대학 커리큘럼에 있어 나중에 직업 시장에 더 잘 대비할 수 있도록 개선하기 위해 변경할 요소는 무엇입니까? (150~200 단어 사이)",
+    "현대 한국 사회에 있어 유교가 미치는 영향에 대해 설명하십시오 (150~200 단어 사이)",
+    "소셜 미디어가 십대들의 정신 건강에 미치는 영향에 대하여 논의하십시오 (150~200 단어 사이)",
+    "한국 가정에서 친환경 실천을 촉진하기 위한 방안을 만드십시오 (150~200 단어 사이)"
+  ]
+};
+
+let session3Questions = {
+  en: [
+    "Describe your childhood neighborhood (Mention any favorite place or how it has changed since?) (Use 150-200 words)",
+    "Explain the cultural significance of the Korean Wave in promoting Korean culture (Use 150-200 words)",
+    "How would you implement a nationwide initiative in South Korea to increase digital literacy among the elderly population? (Use 150-200 words)",
+    "Examine the social and economic factors that have contributed to relatively low happiness index in South Korea and propose solutions. (Use 150-200 words)",
+    "Evaluate the effectiveness of South Korea's response to the COVID-19 pandemic. What were the key strategies, and how successful were they? (Use 150-200 words)",
+    "Design a comprehensive policy to address income inequality in South Korea (Use 150-200 words)"
+  ],
+  ko: [
+    "어린 시절 살았던 지역을 묘사하십시오 (좋아했던 장소나 지역이 그 이후로 어떻게 변했는지 등에 관하여) (200단어 정도로)",
+    "한국 문화를 홍보하는 데 있어 한류의 문화적 중요성을 설명하십시오 (200단어 정도로)",
+    "한국 사회에서 노인 인구의 디지털 문해력을 높이기 위한 방안을 제시하시오? (200단어 정도로)",
+    "다른 국가와 비교했을때 한국의 비교적 낮은 행복지수를 초래한 사회적, 경제적 요인을 분석하고 해결책을 제안하십시오 (200단어 정도로)",
+    "한국의 코로나19 팬데믹 대응의 효과를 평가하십시오. 주요 전략은 무엇이며 얼마나 성공적이었습니까? (200단어 정도로)",
+    "한국의 소득 불평등을 해결하기 위한 종합적인 정책을 설계하십시오 (200단어 정도로)"
+  ]
+};
+
+// Session instructions for each session in both English and Korean
+let sessionInstructions = {
+  session1: {
+    en: "Complete each question yourself without using ChatGPT or any other external help.\nFor each question, write in between 100 and 120 words.\nAnticipated duration: 30-40 minutes.",
+    ko: "각 질문에 대해 ChatGPT나 다른 외부의 도움없이 답변을 직접 작성하십시오.\n각 질문에 100~120 단어 내외로 작성하십시오.\n예상 소요 시간: 30~40분."
+  },
+  session2: {
+    en: "Copy the question (including the number of words required) and directly paste it into ChatGPT.\nCopy the generated response from ChatGPT and paste it into the corresponding input field indicated.\nParaphrase (in between 100 and 120 words) the generated response by going through sentence by sentence.\nKeep in mind, paraphrasing is rendering the same text in different words without losing the meaning of the text itself.\nRepeat the above steps for each question in this session.\nAnticipated duration: 30-40 minutes.",
+    ko: "요구된 단어수 까지 포함 각 질문을 복사하여 ChatGPT에 입력하십시오.\nChatGPT에서 생성된 응답을 복사하여 해당 질문의 첫 번째 입력 필드에 붙여넣기 하십시오.\n생성된 응답을 한 문장씩 차례로 보며 100~120단어 내외로 패러프레이즈 하십시오.\n패러프레이즈는 텍스트 자체의 의미를 잃지 않으면서 같은 텍스트를 다른 단어로 표현하는 것을 의미합니다.\n위와 같은 절차를 반복해서 각각의 질문에 답변을 하십시오.\n예상 소요 시간: 30~40분."
+  },
+  session3: {
+    en: "Copy the question (including the number of words required) and directly paste it into ChatGPT.\nCopy the generated response from ChatGPT and paste it into the corresponding input field indicated.\nRetype the response generated by ChatGPT.",
+    ko: "요구된 단어수 까지 포함 각 질문을 복사하여 ChatGPT에 입력하십시오.\nChatGPT에서 생성된 응답을 복사하여 해당 질문의 첫 번째 입력 필드에 붙여넣기 하십시오.\nChatGPT에서 생성된 응답을 보며 해당 질문의 두번째 입력 필드에 그대로 다시 타이핑하십시오.\n위와 같은 절차를 반복해서 각각의 질문에 답변을 하십시오.\n예상 소요 시간: 30~40분."
+  }
+};
+
+// Global variables to store inputs, keystrokes, and user information
+let inputs = [];
+let keystrokes = [];
+let currentSession = 1;
+let userInfo = {};
+let totalQuestions = 0; // Track the total number of questions
+let language = 'en'; // Default language
+
+// Function to log keystrokes, excluding first input in sessions 2 and 3
+function logKeystroke(event) {
+  let timestamp = Date.now();
+  let inputIndex = inputs.findIndex(input => input.element === event.target);
+
+  // Identify the current session questions
+  let questions;
+  if (currentSession === 1) {
+    questions = session1Questions[language];
+  } else if (currentSession === 2) {
+    questions = session2Questions[language];
+  } else if (currentSession === 3) {
+    questions = session3Questions[language];
+  }
+
+  let questionIndex = Math.floor((inputIndex - totalQuestions) / (currentSession === 1 ? 1 : 2));
+  let question = questions[questionIndex];
+
+  // Skip logging for the first input field in sessions 2 and 3
+  if (currentSession !== 1) {
+    let isFirstInput = (inputIndex - totalQuestions) % 2 === 0;
+    if (isFirstInput) {
+      return; // Do not log keystrokes for the first input field
+    }
+  }
+
+  keystrokes.push({
+    session: currentSession,
+    question: question,
+    key: event.key,
+    code: event.code,
+    event: event.type,
+    timestamp: timestamp,
+    repeat: event.repeat
+  });
+}
+
+// Function to start the session after user information is captured
+function startSession() {
+  hideAlert(); // Hide alert message when starting the session
+  let container = document.getElementById('container');
+  container.style.display = 'block';
+  document.querySelector('.introduction').style.display = 'none';
+  
+  // Hide user info form
+  document.getElementById('user-info-form').style.display = 'none';
+
+  let heading = document.querySelector('h1');
+  let subHeading = document.createElement('h2');
+  subHeading.className = 'center-text'; // Center the subheading
+  if (currentSession === 1) {
+    subHeading.textContent = language === 'en' ? 'Bonafide Writing' : '직접 글쓰기';
+    renderQuestions(container, session1Questions[language]);
+  } else if (currentSession === 2) {
+    subHeading.textContent = language === 'en' ? 'Paraphrasing ChatGPT' : 'ChatGPT 패러프레이징';
+    renderQuestions(container, session2Questions[language], true); // Pass true to indicate two input fields
+  } else if (currentSession === 3) {
+    subHeading.textContent = language === 'en' ? 'Retyping ChatGPT' : 'ChatGPT 옮겨쓰기';
+    renderQuestions(container, session3Questions[language], true); // Pass true to indicate two input fields
+  }
+  heading.after(subHeading);
+
+  let nextButton = document.createElement('button');
+  nextButton.className = 'btn center-text'; // Center the button
+  nextButton.textContent = currentSession === 3 ? (language === 'en' ? 'Submit' : '제출') : (language === 'en' ? 'Next Session' : '다음 세션');
+  container.appendChild(nextButton);
+
+  nextButton.addEventListener('click', () => {
+    if (currentSession === 1) {
+      if (checkAllAnswered(session1Questions[language])) {
+        currentSession = 2;
+        totalQuestions += session1Questions[language].length;
+        container.innerHTML = '';
+        subHeading.remove();
+        startSession(); // Restart to render session 2 questions
+      } else {
+        showAlert(language === 'en' ? 'Please answer all questions before proceeding.' : '모든 질문에 답한 후 진행하십시오.');
+      }
+    } else if (currentSession === 2) {
+      if (checkAllAnswered(session2Questions[language], true)) { // Pass true to check two input fields
+        currentSession = 3;
+        totalQuestions += session2Questions[language].length * 2; // Each question has two inputs
+        container.innerHTML = '';
+        subHeading.remove();
+        startSession(); // Restart to render session 3 questions
+      } else {
+        showAlert(language === 'en' ? 'Please answer all questions in the current session.' : '현재 세션의 모든 질문에 답하십시오.');
+      }
+    } else if (currentSession === 3) {
+      if (checkAllAnswered(session3Questions[language], true)) {
+        totalQuestions += session3Questions[language].length * 2; // Each question has two inputs
+        submitForm();
+      } else {
+        showAlert(language === 'en' ? 'Please answer all questions in the current session.' : '현재 세션의 모든 질문에 답하십시오.');
+      }
+    }
+  });
+}
+
+// Function to render questions dynamically
+function renderQuestions(container, questions, twoInputs = false) {
+  let instructions = document.createElement('div');
+  instructions.className = 'instruction-box';
+
+  let instructionText = '';
+  if (currentSession === 1) {
+    instructionText = sessionInstructions.session1[language];
+  } else if (currentSession === 2) {
+    instructionText = sessionInstructions.session2[language];
+  } else if (currentSession === 3) {
+    instructionText = sessionInstructions.session3[language];
+  }
+
+  // Create a paragraph for the instruction heading
+  let instructionHeading = document.createElement('p');
+  instructionHeading.textContent = language === 'en' ? 'Steps to follow:' : '절차에 관한 설명:';
+  instructions.appendChild(instructionHeading);
+
+  // Create an ordered list element for the steps
+  let instructionList = document.createElement('ol');
+  instructionText.split('\n').forEach(line => {
+    let listItem = document.createElement('li');
+    listItem.textContent = line.trim();
+    instructionList.appendChild(listItem);
+  });
+
+  instructions.appendChild(instructionList);
+  container.appendChild(instructions);
+
+  questions.forEach((q, index) => {
+    let questionDiv = document.createElement('div');
+    questionDiv.className = 'question';
+    container.appendChild(questionDiv);
+
+    let questionText = document.createElement('h2');
+    questionText.textContent = `${index + 1}. ${q}`;
+    questionDiv.appendChild(questionText);
+
+    if (twoInputs) {
+      // First input field (for ChatGPT response) - No keystroke logging
+      let inputLabel1 = document.createElement('label');
+      inputLabel1.textContent = language === 'en' ? 'Copy Paste the generated response from ChatGPT:' : 'ChatGPT에서 생성된 응답을 복사하여 붙여넣기:';
+      questionDiv.appendChild(inputLabel1);
+
+      let input1 = document.createElement('textarea');
+      input1.className = 'input';
+      input1.rows = 10;
+      questionDiv.appendChild(input1);
+      inputs.push({ question: q, element: input1, type: 'chatgpt-response' });
+
+      let wordCountDiv1 = document.createElement('div');
+      wordCountDiv1.className = 'word-count';
+      wordCountDiv1.textContent = language === 'en' ? 'Word count: 0' : '단어 수: 0';
+      questionDiv.appendChild(wordCountDiv1);
+
+      input1.addEventListener('input', () => {
+        updateWordCount(input1, wordCountDiv1);
+      });
+
+      // Allow copy-paste for the first input field in session 2 and 3
+      input1.addEventListener('copy', (e) => {
+        e.stopPropagation();
+      });
+      input1.addEventListener('paste', (e) => {
+        e.stopPropagation();
+      });
+
+      // Second input field (for paraphrasing or retyping) - Keystroke logging enabled
+      let inputLabel2 = document.createElement('label');
+      if (currentSession === 2) {
+        inputLabel2.textContent = language === 'en' ? 'Paraphrase the above response (in 100-120 words):' : '위의 응답을 패러프레이즈 (100-120 단어 내외):';
+      } else if (currentSession === 3) {
+        inputLabel2.textContent = language === 'en' ? 'Retype the generated response:' : '챗지피티 응답 옮겨쓰기 (100-120단어 이내로):';
+      }
+      questionDiv.appendChild(inputLabel2);
+
+      let input2 = document.createElement('textarea');
+      input2.className = 'input';
+      input2.rows = 10;
+      questionDiv.appendChild(input2);
+      inputs.push({ question: q, element: input2, type: 'user-response' });
+
+      let wordCountDiv2 = document.createElement('div');
+      wordCountDiv2.className = 'word-count';
+      wordCountDiv2.textContent = language === 'en' ? 'Word count: 0' : '단어 수: 0';
+      questionDiv.appendChild(wordCountDiv2);
+
+      input2.addEventListener('input', () => {
+        updateWordCount(input2, wordCountDiv2);
+      });
+
+      // Restrict copy-paste for the second input field in session 2 and 3
+      input2.addEventListener('copy', (e) => e.preventDefault());
+      input2.addEventListener('paste', (e) => e.preventDefault());
+
+    } else {
+      // Single input field for session 1
+      let input = document.createElement('textarea');
+      input.className = 'input';
+      input.rows = 10;
+      questionDiv.appendChild(input);
+      inputs.push({ question: q, element: input, type: 'user-response' });
+
+      let wordCountDiv = document.createElement('div');
+      wordCountDiv.className = 'word-count';
+      wordCountDiv.textContent = language === 'en' ? 'Word count: 0' : '단어 수: 0';
+      questionDiv.appendChild(wordCountDiv);
+
+      input.addEventListener('input', () => {
+        updateWordCount(input, wordCountDiv);
+      });
+
+      if (currentSession !== 2) {
+        input.addEventListener('copy', (e) => e.preventDefault());
+        input.addEventListener('paste', (e) => e.preventDefault());
+      }
+    }
+  });
+}
+
+
+// Function to update word count display
+function updateWordCount(input, wordCountDiv) {
+  let wordCount = input.value.trim().split(/\s+/).filter(word => word.length > 0).length;
+  wordCountDiv.textContent = language === 'en' ? `Word count: ${wordCount}` : `단어 수: ${wordCount}`;
+}
+
+// Function to check if all questions are answered
+function checkAllAnswered(questions, twoInputs = false) {
+  let startIndex = totalQuestions;
+  let endIndex = totalQuestions + questions.length * (twoInputs ? 2 : 1);
+  return inputs.slice(startIndex, endIndex).every(input => input.element.value.trim() !== '');
+}
+
+// Function to create download link
+function createDownloadLink(blob, filename) {
+  let url = URL.createObjectURL(blob);
+  let link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  link.style.display = 'none';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+// Function to create a download button
+function createDownloadButton(blob, filename, buttonText) {
+  let url = URL.createObjectURL(blob);
+  let button = document.createElement('button');
+  button.className = 'btn center-text';
+  button.textContent = buttonText;
+  button.addEventListener('click', () => {
+    let link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(url);
+  });
+  return button;
+}
+
+// Function to submit form data
+function submitForm() {
+  const session1ResponseStartIndex = 0;
+  const session2ResponseStartIndex = session1Questions[language].length;
+  const session3ResponseStartIndex = session1Questions[language].length + session2Questions[language].length * 2;
+
+  if (checkAllAnswered(session3Questions[language], true)) {
+    let responses = [
+      ...session1Questions[language].map((q, index) => ({
+        session: 1,
+        question: q,
+        'word count': getWordCount(inputs[session1ResponseStartIndex + index].element.value),
+        answer: inputs[session1ResponseStartIndex + index].element.value
+      })),
+      ...session2Questions[language].map((q, index) => ({
+        session: 2,
+        question: q,
+        'ChatGPT word count': getWordCount(inputs[session2ResponseStartIndex + index * 2].element.value),
+        'ChatGPT answer': inputs[session2ResponseStartIndex + index * 2].element.value,
+        'paraphrase word count': getWordCount(inputs[session2ResponseStartIndex + index * 2 + 1].element.value),
+        paraphrase: inputs[session2ResponseStartIndex + index * 2 + 1].element.value
+      })),
+      ...session3Questions[language].map((q, index) => ({
+        session: 3,
+        question: q,
+        'ChatGPT word count': getWordCount(inputs[session3ResponseStartIndex + index * 2].element.value),
+        'ChatGPT answer': inputs[session3ResponseStartIndex + index * 2].element.value,
+        'retype word count': getWordCount(inputs[session3ResponseStartIndex + index * 2 + 1].element.value),
+        retype: inputs[session3ResponseStartIndex + index * 2 + 1].element.value
+      }))
+    ];
+
+    let responseData = {
+      responses: responses
+    };
+
+    let keystrokeData = {
+      keystrokes: keystrokes
+    };
+
+    // Capture user information
+    let userInfoData = {
+      gender: document.querySelector('input[name="gender"]:checked').value,
+      age: document.getElementById('age').value,
+      handedness: document.querySelector('input[name="handedness"]:checked').value,
+      koreanProficiency: document.getElementById('korean-proficiency').value,
+      educationLevel: document.getElementById('education-level').value
+    };
+
+    // Convert data to JSON format
+    let responseJsonData = JSON.stringify(responseData, null, 2);
+    let keystrokeJsonData = JSON.stringify(keystrokeData, null, 2);
+    let userInfoJsonData = JSON.stringify(userInfoData, null, 2);
+
+    // Create Blobs containing the JSON data
+    let responseBlob = new Blob([responseJsonData], { type: 'application/json' });
+    let keystrokeBlob = new Blob([keystrokeJsonData], { type: 'application/json' });
+    let userInfoBlob = new Blob([userInfoJsonData], { type: 'application/json' });
+
+    // Create URLs to the Blobs
+    let responseUrl = URL.createObjectURL(responseBlob);
+    let keystrokeUrl = URL.createObjectURL(keystrokeBlob);
+    let userInfoUrl = URL.createObjectURL(userInfoBlob);
+
+    // Create link elements to trigger the downloads
+    createDownloadLink(responseBlob, 'responses_data.json');
+    createDownloadLink(keystrokeBlob, 'keystroke_data.json');
+    createDownloadLink(userInfoBlob, 'UserInformation.json');
+
+    // Show thank you message with buttons to manually download files if needed
+    showThankYouMessage(responseBlob, keystrokeBlob, userInfoBlob);
+
+  } else {
+    showAlert(language === 'en' ? 'Please complete all questions in the current session.' : '현재 세션의 모든 질문을 완료하십시오.');
+  }
+}
+
+// Function to calculate the word count
+function getWordCount(text) {
+  return text.trim().split(/\s+/).filter(word => word.length > 0).length;
+}
+
+// Function to show thank you message
+function showThankYouMessage(responseBlob, keystrokeBlob, userInfoBlob) {
+  let container = document.getElementById('container');
+  container.innerHTML = language === 'en' ? '<h2>Thank you for your participation!</h2>' : '<h2>참여해 주셔서 감사합니다!</h2>';
+  container.innerHTML += language === 'en' ? '<p>Please email the following JSON files to dhr014@bucknell.edu</p>' : '<p>다음 JSON 파일을 dhr014@bucknell.edu로 이메일로 보내십시오</p>';
+
+  let list = document.createElement('ul');
+  list.innerHTML = `
+    <li>responses_data.json</li>
+    <li>keystroke_data.json</li>
+    <li>UserInformation.json</li>
+  `;
+  container.appendChild(list);
+
+  // Add buttons to download the files manually
+  let buttonContainer = document.createElement('div');
+  buttonContainer.className = 'button-container';
+
+  buttonContainer.appendChild(createDownloadButton(responseBlob, 'responses_data.json', language === 'en' ? 'Download Responses Data' : '응답 데이터 다운로드'));
+  buttonContainer.appendChild(createDownloadButton(keystrokeBlob, 'keystroke_data.json', language === 'en' ? 'Download Keystroke Data' : '키 데이터 다운로드'));
+  buttonContainer.appendChild(createDownloadButton(userInfoBlob, 'UserInformation.json', language === 'en' ? 'Download User Information' : '사용자 정보 다운로드'));
+
+  container.appendChild(buttonContainer);
+
+  // Add visual feedback
+  let visualFeedback = document.createElement('div');
+  visualFeedback.className = 'feedback';
+  visualFeedback.textContent = language === 'en' ? 'Your responses have been recorded successfully.' : '귀하의 응답이 성공적으로 기록되었습니다.';
+  container.appendChild(visualFeedback);
+}
+
+// Function to show alert message
+function showAlert(message) {
+  let alertDiv = document.querySelector('.alert');
+  if (!alertDiv) {
+    alertDiv = document.createElement('div');
+    alertDiv.className = 'alert';
+    document.querySelector('.container').appendChild(alertDiv); // Append alert to the main container
+  }
+  alertDiv.textContent = message;
+  alertDiv.style.display = 'block';
+}
+
+// Function to hide alert message
+function hideAlert() {
+  let alertDiv = document.querySelector('.alert');
+  if (alertDiv) {
+    alertDiv.style.display = 'none';
+  }
+}
+
+// Function to hide the language selection dropdown
+function hideLanguageSelection() {
+  document.getElementById('language-selection').style.display = 'none';
+}
+
+// Event listener for the "Participate" button to include hiding the language selection
+document.getElementById('participateButton').addEventListener('click', function() {
+  hideLanguageSelection();
+  document.getElementById('introduction').style.display = 'none';
+  document.getElementById('user-info-form').style.display = 'block';
+});
+
+// Event listener when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('participateButton').addEventListener('click', function() {
+    hideLanguageSelection(); // Ensure the dropdown is hidden
+    document.getElementById('introduction').style.display = 'none';
+    document.getElementById('user-info-form').style.display = 'block';
+  });
+
+  document.getElementById('userInfoForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+    validateUserInfoForm();
+  });
+
+  // Initialize input listeners for each input field using event delegation
+  initializeEventListeners();
+});
+
+// Function to validate user information form
+function validateUserInfoForm() {
+  let gender = document.querySelector('input[name="gender"]:checked');
+  let age = document.getElementById('age').value.trim();
+  let handedness = document.querySelector('input[name="handedness"]:checked');
+  let errorMessage = '';
+  
+  if (!gender) {
+    errorMessage += language === 'en' ? 'Gender is required. ' : '성별은 필수입니다. ';
+  }
+  
+  if (!age) {
+    errorMessage += language === 'en' ? 'Age is required. ' : '나이는 필수입니다. ';
+  } else if (!/^\d+$/.test(age) || parseInt(age) < 5 || parseInt(age) > 80) {
+    errorMessage += language === 'en' ? 'Please enter a valid age between 5 and 80. ' : '5세에서 80세 사이의 유효한 나이를 입력하십시오. ';
+  }
+  
+  if (!handedness) {
+    errorMessage += language === 'en' ? 'Handedness is required. ' : '손잡이는 필수입니다. ';
+  }
+
+  if (errorMessage) {
+    displayPopupError(errorMessage);
+  } else {
+    hidePopupError();
+    startSession(); // Proceed to the first session of questions
+  }
+}
+
+// Function to display popup error message
+function displayPopupError(message) {
+  let errorPopup = document.getElementById('error-popup');
+  if (!errorPopup) {
+    errorPopup = document.createElement('div');
+    errorPopup.id = 'error-popup';
+    errorPopup.className = 'error-popup';
+    document.body.appendChild(errorPopup);
+  }
+  errorPopup.textContent = message;
+  errorPopup.style.display = 'block';
+}
+
+// Function to hide popup error message
+function hidePopupError() {
+  let errorPopup = document.getElementById('error-popup');
+  if (errorPopup) {
+    errorPopup.style.display = 'none';
+  }
+}
+
+// Function to set language and translate content
+function setLanguage(lang) {
+  language = lang;
+  translateContent(lang);
+  document.getElementById('language-selection').style.display = 'none'; // Hide language selection after initial choice
+}
+
+// Function to translate content based on selected language
+function translateContent(lang) {
+  document.getElementById('title').textContent = lang === 'en' ? 'Keystroke Dynamics Research' : '타이핑 패턴 연구';
+  
+  // Translate introduction paragraphs
+  document.getElementById('introduction-text').textContent = lang === 'en' ? 
+    'Traditional plagiarism detection tools, which primarily rely on direct comparisons between a user’s input and existing sources, often struggle to identify more sophisticated forms of cheating, such as extensive paraphrasing or the use of external assistance, including generative AI or other individuals.' : 
+    '기존의 표절 탐지 도구는 주로 사용자의 입력과 기존 출처 간의 직접적인 비교에 의존하기 때문에 광범위한 의역 또는 생성적 AI나 다른 사람의 도움을 포함한 외부 지원과 같은 더 정교한 형태의 부정행위를 식별하는 데 어려움을 겪습니다.';
+
+  document.getElementById('objective-text').textContent = lang === 'en' ? 
+    'Thus, this study aims to address academic dishonesty in writing by analyzing typing patterns and examining the differences in typing dynamics when individuals write directly compared to when they refer to or copy responses from ChatGPT. These differences are characterized by variations in thinking time, typing speed, and the frequency of editing actions during the writing process.' : 
+    '따라서 이 연구는 가상의 시나리오를 통해 타이핑 패턴을 분석하여 글쓰기에서의 부정행위를 식별하는 것을 목표로 합니다. 이 연구는 작성자가 직접 작성할 때와 ChatGPT의 답변을 참고하거나 그대로 옮겨쓸 때의 타이핑 역학이 다르다는 가정에 기반합니다. 이는 생각하는 시간, 타이핑 속도, 그리고 작성 중 수정 행동의 빈도 등이 다르기 때문입니다.';
+
+  // Translate data collection process
+  document.getElementById('data-collection-process').textContent = lang === 'en' ? 
+    'Data Collection Process:' : 
+    '데이터 수집 과정:';
+  document.getElementById('data-collection-description').textContent = lang === 'en' ? 
+    'There are three different sessions for collecting data. In each session, participants will respond to six questions using 100-120 words each, which are designed to invoke various cognitive load levels.' : 
+    '데이터 수집을 위한 세 가지 다른 세션이 있습니다. 각 세션에는 다양한 인지 부하 수준을 유도하도록 설계된 여섯 가지 질문들이 있고 참가자들은 각 질문에 100-120단어로 답변해야 합니다.';
+  document.getElementById('session1-description').textContent = lang === 'en' ? 
+    'In this session, participants need to generate responses to each question independently, without any external assistance.' : 
+    '독립적인 글쓰기 세션: 참가자들은 외부 도움 없이 각 질문에 독립적으로 응답을 생성해야 합니다.';
+  document.getElementById('session2-description').textContent = lang === 'en' ? 
+    'Paraphrasing ChatGPT Session: In this session, participants will feed each question to ChatGPT, then paraphrase the generated response. Paraphrasing is the act of restating a piece of text in your own words while retaining the original meaning.' : 
+    'ChatGPT 패러프레이징 세션: 이 세션에서는 참가자들은 각 질문을 ChatGPT에 입력한 후, 생성된 답변을 패러프레이징 해야 합니다. 이때 패러프레이징이란 원래 문장의 의미를 유지하면서도 다른 어휘와 문장 구조를 사용하여 표현하는 것을 의미합니다.';
+  document.getElementById('session3-description').textContent = lang === 'en' ? 
+    'Retyping ChatGPT Session: In this session, participants will feed each prompt to ChatGPT, then retype the generated response, focusing on accurately transcribing the provided answers.' : 
+    'ChatGPT 옮겨쓰기 세션: 이 세션에서 참가자들은 각 질문을 ChatGPT에 입력한 후, 생성된 답변을 그대로 재작성할 것입니다.';
+
+  // Translate evaluation criteria
+  document.getElementById('evaluation-criteria').textContent = lang === 'en' ? 
+    'Evaluation Criteria:' : 
+    '평가 기준:';
+  document.getElementById('evaluation-description').textContent = lang === 'en' ? 
+    'Upon submission, participant responses will be evaluated based on several criteria:' : 
+    '제출 후 참가자 응답은 여러 기준에 따라 평가됩니다:';
+  document.getElementById('grammatical-accuracy').textContent = lang === 'en' ? 
+    'Grammatical Accuracy' : 
+    '문법 정확성';
+  document.getElementById('relevance').textContent = lang === 'en' ? 
+    'Relevance' : 
+    '관련성';
+  document.getElementById('length').textContent = lang === 'en' ? 
+    'Length' : 
+    '길이';
+
+  // Translate violation note
+  const violationNote = document.getElementById('violation-note');
+  if (violationNote) {
+    violationNote.textContent = lang === 'en' ? 
+      'Significant violations of the above could result in a reduced amount of payment for participating in this data collection.' : 
+      '위의 기준을 심각하게 위반할 경우, 데이터 수집 참여에 대한 보상이 감소될 수 있습니다.';
+  }
+
+  document.getElementById('participateButton').textContent = lang === 'en' ? 'Proceed to User Information' : '사용자 정보로 진행';
+  document.getElementById('user-info-title').textContent = lang === 'en' ? 'Please provide your information to proceed:' : '진행하려면 정보를 제공하십시오:';
+  document.getElementById('gender-label').innerHTML = lang === 'en' ? 'Gender:<span class="required">*</span>' : '성별:<span class="required">*</span>';
+  document.getElementById('male-label').textContent = lang === 'en' ? 'Male' : '남성';
+  document.getElementById('female-label').textContent = lang === 'en' ? 'Female' : '여성';
+  document.getElementById('other-label').textContent = lang === 'en' ? 'Other' : '기타';
+  document.getElementById('age-label').innerHTML = lang === 'en' ? 'Age:<span class="required">*</span>' : '나이:<span class="required">*</span>';
+  document.getElementById('handedness-label').innerHTML = lang === 'en' ? 'Handedness:<span class="required">*</span>' : '손잡이:<span class="required">*</span>';
+  document.getElementById('right-handed-label').textContent = lang === 'en' ? 'Right-handed' : '오른손잡이';
+  document.getElementById('left-handed-label').textContent = lang === 'en' ? 'Left-handed' : '왼손잡이';
+  document.getElementById('korean-proficiency-label').textContent = lang === 'en' ? 'Proficiency in Korean:' : '한국어 능숙도:';
+  document.getElementById('choose-label').textContent = lang === 'en' ? 'Choose' : '선택';
+  document.getElementById('expert-label').textContent = lang === 'en' ? 'Expert' : '전문가';
+  document.getElementById('standard-label').textContent = lang === 'en' ? 'Standard' : '표준';
+  document.getElementById('average-label').textContent = lang === 'en' ? 'Average' : '보통';
+  document.getElementById('education-level-label').textContent = lang === 'en' ? 'Education Level:' : '교육 수준:';
+  document.getElementById('choose-education-label').textContent = lang === 'en' ? 'Choose' : '선택';
+  document.getElementById('highschool-label').textContent = lang === 'en' ? 'High School' : '고등학교';
+  document.getElementById('undergraduate-label').textContent = lang === 'en' ? 'Undergraduate' : '대학 학부';
+  document.getElementById('graduate-label').textContent = lang === 'en' ? 'Graduate' : '대학원';
+  document.getElementById('proceed-button').textContent = lang === 'en' ? 'Proceed to Questions' : '질문으로 진행';
+  document.getElementById('error-message').textContent = ''; // Clear the error message when changing the language
+}
+
+
+
+// Function to initialize event listeners for input fields using event delegation
+function initializeEventListeners() {
+  // Attach event listeners to the document
+  document.addEventListener('keydown', handleEvent);
+  document.addEventListener('keyup', handleEvent);
+  document.addEventListener('input', handleEvent);
+}
+
+// Event handler function for delegated events
+function handleEvent(event) {
+  // Check if the event target is an input field with the class 'input'
+  if (event.target.classList.contains('input')) {
+    // Call the appropriate function based on the event type
+    if (event.type === 'keydown' || event.type === 'keyup') {
+      logKeystroke(event);
+    } else if (event.type === 'input') {
+      // Update word count if the event is 'input'
+      let wordCountDiv = event.target.nextElementSibling;
+      if (wordCountDiv && wordCountDiv.classList.contains('word-count')) {
+        updateWordCount(event.target, wordCountDiv);
+      }
+    }
+  }
+}
